@@ -1,3 +1,7 @@
+/**
+ * gameStoB — Main JavaScript
+ * Mobile nav, search/category filters, purchase form validation (no regex)
+ */
 
 (function () {
   'use strict';
@@ -5,13 +9,13 @@
   var CART_KEY = 'gameStoB_cart';
   var TAX_RATE = 0.08;
 
-
+  /* ---------- Cart (localStorage) ---------- */
   function getCart() {
     try {
       var raw = localStorage.getItem(CART_KEY);
       if (raw) return JSON.parse(raw);
     } catch (e) {
-
+      /* ignore */
     }
     return [];
   }
@@ -246,11 +250,14 @@
       row.className = 'cart-line-item';
       row.setAttribute('data-id', item.id);
 
+      var thumb = document.createElement('div');
+      thumb.className = 'cart-thumb';
+
       var img = document.createElement('img');
       img.src = resolveImagePath(item.image);
       img.alt = item.title;
-      img.width = 64;
-      img.height = 80;
+
+      thumb.appendChild(img);
 
       var details = document.createElement('div');
       details.className = 'cart-line-details';
@@ -301,7 +308,7 @@
       details.appendChild(linePrice);
       details.appendChild(controls);
 
-      row.appendChild(img);
+      row.appendChild(thumb);
       row.appendChild(details);
       list.appendChild(row);
     }
@@ -360,7 +367,7 @@
     });
   }
 
-  
+  /* ---------- Products: search + category + device filter ---------- */
   function initProductFilters() {
     var grid = document.getElementById('products-grid');
     if (!grid) return;
@@ -368,9 +375,31 @@
     var cards = Array.prototype.slice.call(grid.querySelectorAll('.game-card'));
     var searchInput = document.getElementById('product-search');
     var sortSelect = document.getElementById('sort-select');
-    var filterBtns = document.querySelectorAll('.filter-btn');
+    var deviceSelect = document.getElementById('device-select');
+    var categoryBtns = document.querySelectorAll('.category-filters .filter-btn');
+    var deviceBtns = document.querySelectorAll('.device-filters .filter-btn');
     var noResults = document.getElementById('no-results');
     var activeCategory = 'all';
+    var activeDevice = 'all';
+
+    function cardHasPlatform(card, device) {
+      if (device === 'all') return true;
+      var platforms = (card.getAttribute('data-platform') || '').toLowerCase();
+      var parts = platforms.split(' ');
+      var i;
+      for (i = 0; i < parts.length; i++) {
+        if (parts[i] === device) return true;
+      }
+      return false;
+    }
+
+    function syncDeviceUI(device) {
+      activeDevice = device;
+      if (deviceSelect) deviceSelect.value = device;
+      deviceBtns.forEach(function (btn) {
+        btn.classList.toggle('active', btn.getAttribute('data-device') === device);
+      });
+    }
 
     function getCardText(card) {
       var title = card.querySelector('h3');
@@ -386,8 +415,9 @@
         var category = card.getAttribute('data-category') || '';
         var text = getCardText(card);
         var matchCategory = activeCategory === 'all' || category === activeCategory;
+        var matchDevice = cardHasPlatform(card, activeDevice);
         var matchSearch = !query || text.indexOf(query) !== -1;
-        var show = matchCategory && matchSearch;
+        var show = matchCategory && matchDevice && matchSearch;
         card.style.display = show ? '' : 'none';
         if (show) visible++;
       });
@@ -424,9 +454,9 @@
       searchInput.addEventListener('input', applyFilters);
     }
 
-    filterBtns.forEach(function (btn) {
+    categoryBtns.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        filterBtns.forEach(function (b) {
+        categoryBtns.forEach(function (b) {
           b.classList.remove('active');
         });
         btn.classList.add('active');
@@ -434,6 +464,21 @@
         applyFilters();
       });
     });
+
+    deviceBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var device = btn.getAttribute('data-device') || 'all';
+        syncDeviceUI(device);
+        applyFilters();
+      });
+    });
+
+    if (deviceSelect) {
+      deviceSelect.addEventListener('change', function () {
+        syncDeviceUI(deviceSelect.value || 'all');
+        applyFilters();
+      });
+    }
 
     if (sortSelect) {
       sortSelect.addEventListener('change', function () {
@@ -443,7 +488,7 @@
     }
   }
 
-  
+  /* ---------- Form validation helpers (no regex) ---------- */
   function isEmpty(str) {
     var i;
     var len = str.length;
@@ -606,7 +651,7 @@
     });
   }
 
-  
+  /* ---------- Wishlist toggle (UX feedback) ---------- */
   function initWishlist() {
     document.querySelectorAll('.wishlist-btn').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
