@@ -545,6 +545,103 @@
     return result;
   }
 
+  function extractDigits(str) {
+    var result = '';
+    var i;
+    for (i = 0; i < str.length; i++) {
+      var c = str.charAt(i);
+      if (c >= '0' && c <= '9') {
+        result += c;
+      }
+    }
+    return result;
+  }
+
+  function formatExpirationDate(raw) {
+    var digits = extractDigits(raw);
+    var month = '';
+    var year = '';
+    var mNum;
+    var firstTwo;
+
+    if (digits.length > 4) {
+      digits = digits.substring(0, 4);
+    }
+    if (digits.length === 0) {
+      return '';
+    }
+    if (digits.length === 1) {
+      return digits;
+    }
+
+    firstTwo = digits.substring(0, 2);
+    mNum = parseInt(firstTwo, 10);
+
+    if (mNum === 0) {
+      month = '01';
+      year = digits.substring(2, 4);
+    } else if (mNum > 12) {
+      month = '0' + digits.charAt(0);
+      year = digits.substring(1, 3);
+    } else {
+      month = firstTwo;
+      year = digits.substring(2, 4);
+    }
+
+    if (year.length > 0) {
+      return month + '/' + year;
+    }
+    if (mNum >= 1 && mNum <= 12) {
+      return month + '/';
+    }
+    return month;
+  }
+
+  function validateExpiration(val) {
+    if (val.length !== 5) {
+      return false;
+    }
+    if (val.charAt(2) !== '/') {
+      return false;
+    }
+    var month = val.substring(0, 2);
+    var year = val.substring(3, 5);
+    if (!isDigitsOnly(month) || !isDigitsOnly(year)) {
+      return false;
+    }
+    var m = parseInt(month, 10);
+    return m >= 1 && m <= 12;
+  }
+
+  function initExpirationFormat(input) {
+    if (!input) return;
+
+    input.setAttribute('maxlength', '5');
+    input.setAttribute('inputmode', 'numeric');
+    input.setAttribute('placeholder', 'MM/YY');
+
+    input.addEventListener('input', function () {
+      var cursorPos = input.selectionStart;
+      var prevLen = input.value.length;
+      var formatted = formatExpirationDate(input.value);
+      input.value = formatted;
+      clearError(input);
+
+      var newLen = formatted.length;
+      var newPos = cursorPos + (newLen - prevLen);
+      if (newPos < 0) newPos = 0;
+      if (newPos > newLen) newPos = newLen;
+      if (formatted.charAt(2) === '/' && cursorPos === 2 && newLen > prevLen) {
+        newPos = 3;
+      }
+      input.setSelectionRange(newPos, newPos);
+    });
+
+    input.addEventListener('blur', function () {
+      input.value = formatExpirationDate(input.value);
+    });
+  }
+
   function showError(input, message) {
     var group = input.closest('.form-group') || input.closest('.checkbox-group');
     if (!group) return;
@@ -581,6 +678,7 @@
     Object.keys(fields).forEach(function (key) {
       var el = fields[key];
       if (!el) return;
+      if (key === 'expiration') return;
       el.addEventListener('input', function () {
         clearError(el);
       });
@@ -588,6 +686,8 @@
         clearError(el);
       });
     });
+
+    initExpirationFormat(fields.expiration);
 
     if (popupClose && popup) {
       popupClose.addEventListener('click', function () {
@@ -626,6 +726,12 @@
       var cardVal = fields.cardNumber ? stripSpaces(fields.cardNumber.value) : '';
       if (!isDigitsOnly(cardVal) || cardVal.length !== 16) {
         showError(fields.cardNumber, 'Card number must be exactly 16 digits.');
+        valid = false;
+      }
+
+      var expVal = fields.expiration ? trimString(fields.expiration.value) : '';
+      if (!validateExpiration(expVal)) {
+        showError(fields.expiration, 'Enter a valid expiration date (MM/YY).');
         valid = false;
       }
 
