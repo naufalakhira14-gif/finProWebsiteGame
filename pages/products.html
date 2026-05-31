@@ -52,6 +52,13 @@
               <option value="price-high">Price: High to Low</option>
               <option value="name">Name: A–Z</option>
             </select>
+            <select id="device-select" class="sort-select" aria-label="Filter by device">
+              <option value="all">All Devices</option>
+              <option value="pc">PC</option>
+              <option value="ps5">PlayStation 5</option>
+              <option value="xbox">Xbox</option>
+              <option value="switch">Nintendo Switch</option>
+            </select>
           </div>
 
           <div class="category-filters" role="group" aria-label="Category filters">
@@ -65,11 +72,21 @@
             <button type="button" class="filter-btn" data-filter="fighting">Fighting</button>
             <button type="button" class="filter-btn" data-filter="shooter">Shooter</button>
           </div>
+          <div class="filter-section">
+            <p class="filter-section-label">Device</p>
+            <div class="device-filters" role="group" aria-label="Device filters">
+              <button type="button" class="filter-btn device-btn active" data-device="all">All</button>
+              <button type="button" class="filter-btn device-btn" data-device="pc">PC</button>
+              <button type="button" class="filter-btn device-btn" data-device="ps5">PS5</button>
+              <button type="button" class="filter-btn device-btn" data-device="xbox">Xbox</button>
+              <button type="button" class="filter-btn device-btn" data-device="switch">Switch</button>
+            </div>
+          </div>
 
           <div class="game-grid" id="products-grid">
             <p class="no-results" id="no-results">No games match your search. Try a different keyword or category.</p>
 
-            <article class="game-card" data-id="cyberpunk-2077" data-category="rpg" data-price="59.99">
+            <article class="game-card" data-id="cyberpunk-2077" data-category="rpg" data-platform="pc ps5" data-price="59.99">
               <div class="game-card-image">
                 <img src="../assets\images\cyberpunk.jpg" alt="Cyberpunk 2077" width="400" height="500">
                 <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
@@ -82,7 +99,7 @@
               </div>
             </article>
 
-            <article class="game-card" data-id="elden-ring" data-category="rpg" data-price="49.99">
+            <article class="game-card" data-id="elden-ring" data-category="rpg" data-platform="pc xbox" data-price="49.99">
               <div class="game-card-image">
                 <img src="../assets\images\eldenRingDLC.avif"  width="400" height="500">
                 <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
@@ -95,7 +112,7 @@
               </div>
             </article>
 
-            <article class="game-card" data-id="resident-evil-4" data-category="horror" data-price="39.99">
+            <article class="game-card" data-id="resident-evil-4" data-category="horror" data-platform="pc switch" data-price="39.99">
               <div class="game-card-image">
                 <img src="../assets\images\residentEvil4.avif"  width="400" height="500">
                 <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
@@ -108,7 +125,7 @@
               </div>
             </article>
 
-            <article class="game-card" data-id="forza-horizon-5" data-category="racing" data-price="44.99">
+            <article class="game-card" data-id="forza-horizon-5" data-category="racing" data-platform="pc xbox" data-price="44.99">
               <div class="game-card-image">
                 <img src="../assets\images\forza5.9ac09d39-064d-466c-81ca-2f1b6f0b95c5"  width="400" height="500">
                 <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
@@ -121,7 +138,7 @@
               </div>
             </article>
 
-            <article class="game-card" data-id="street-fighter-6" data-category="fighting" data-price="59.99">
+             <article class="game-card" data-id="street-fighter-6" data-category="fighting" data-platform="pc ps5" data-price="59.99">
               <div class="game-card-image">
                 <img src="../assets\images\streetFighter.jpg" width="400" height="500">
                 <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
