@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse the full gameStoB catalog — filter by genre, search, and sort.">
+  <title>gameStoB | Products</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">game<span>StoB</span></a>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="purchase.html">Purchase</a>
+        <a href="about.html">About Us</a>
+        <a href="locations.html">Locations</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" aria-label="Search">🔍</button>
+        <button type="button" class="icon-btn" aria-label="Account">👤</button>
+        <a href="purchase.html" class="icon-btn cart-badge" aria-label="Cart">🛒</a>
+        <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a> &gt; <span>Products</span>
+      </nav>
+
+      <div class="page-title">
+        <h1>Game Catalog</h1>
+        <p>Discover thousands of titles. Use search and filters to find your next adventure.</p>
+      </div>
+
+      <div class="products-layout products-layout-single">
+        <div class="products-main">
+          <div class="products-toolbar">
+            <div class="search-box">
+              <input type="search" id="product-search" placeholder="Search games..." aria-label="Search games">
+            </div>
+            <select id="sort-select" class="sort-select" aria-label="Sort products">
+              <option value="default">Sort by: Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="name">Name: A–Z</option>
+            </select>
+          </div>
+
+          <div class="category-filters" role="group" aria-label="Category filters">
+            <button type="button" class="filter-btn active" data-filter="all">All</button>
+            <button type="button" class="filter-btn" data-filter="action">Action</button>
+            <button type="button" class="filter-btn" data-filter="adventure">Adventure</button>
+            <button type="button" class="filter-btn" data-filter="rpg">RPG</button>
+            <button type="button" class="filter-btn" data-filter="racing">Racing</button>
+            <button type="button" class="filter-btn" data-filter="strategy">Strategy</button>
+            <button type="button" class="filter-btn" data-filter="horror">Horror</button>
+            <button type="button" class="filter-btn" data-filter="fighting">Fighting</button>
+            <button type="button" class="filter-btn" data-filter="shooter">Shooter</button>
+          </div>
+
+          <div class="game-grid" id="products-grid">
+            <p class="no-results" id="no-results">No games match your search. Try a different keyword or category.</p>
+
+            <article class="game-card" data-id="cyberpunk-2077" data-category="rpg" data-price="59.99">
+              <div class="game-card-image">
+                <img src="../assets\images\cyberpunk.jpg" alt="Cyberpunk 2077" width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Cyberpunk 2077</h3>
+                <div class="game-meta"><span class="genre">RPG</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span><span class="platform-badge">PS5</span></div>
+                <p class="game-price">$59.99</p>
+              </div>
+            </article>
+
+            <article class="game-card" data-id="elden-ring" data-category="rpg" data-price="49.99">
+              <div class="game-card-image">
+                <img src="../assets\images\eldenRingDLC.avif"  width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Elden Ring</h3>
+                <div class="game-meta"><span class="genre">RPG</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span><span class="platform-badge">Xbox</span></div>
+                <p class="game-price">$49.99</p>
+              </div>
+            </article>
+
+            <article class="game-card" data-id="resident-evil-4" data-category="horror" data-price="39.99">
+              <div class="game-card-image">
+                <img src="../assets\images\residentEvil4.avif"  width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Resident Evil 4</h3>
+                <div class="game-meta"><span class="genre">Horror</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span><span class="platform-badge">Switch</span></div>
+                <p class="game-price">$39.99</p>
+              </div>
+            </article>
+
+            <article class="game-card" data-id="forza-horizon-5" data-category="racing" data-price="44.99">
+              <div class="game-card-image">
+                <img src="../assets\images\forza5.9ac09d39-064d-466c-81ca-2f1b6f0b95c5"  width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Forza Horizon 5</h3>
+                <div class="game-meta"><span class="genre">Racing</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span><span class="platform-badge">Xbox</span></div>
+                <p class="game-price">$44.99</p>
+              </div>
+            </article>
+
+            <article class="game-card" data-id="street-fighter-6" data-category="fighting" data-price="59.99">
+              <div class="game-card-image">
+                <img src="../assets\images\streetFighter.jpg" width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Street Fighter 6</h3>
+                <div class="game-meta"><span class="genre">Fighting</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span><span class="platform-badge">PS5</span></div>
+                <p class="game-price">$59.99</p>
+              </div>
+            </article>
+
+            <article class="game-card" data-id="civilization-vi" data-category="strategy" data-price="34.99">
+              <div class="game-card-image">
+                <img src="../assets\images\sidmiers.jpg" alt="Sid Meier's Civilization VI" width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Sid Meier's Civilization VI</h3>
+                <div class="game-meta"><span class="genre">Strategy</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span></div>
+                <p class="game-price">$34.99</p>
+              </div>
+            </article>
+
+            <article class="game-card" data-id="call-of-duty-modern-warfare-iii" data-category="shooter" data-price="54.99">
+              <div class="game-card-image">
+                <img src="../assets\images\codiii.jpg"  width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Call of Duty: Modern Warfare III</h3>
+                <div class="game-meta"><span class="genre">Shooter</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span><span class="platform-badge">Xbox</span></div>
+                <p class="game-price">$54.99</p>
+              </div>
+            </article>
+
+            <article class="game-card" data-id="baldurs-gate-3" data-category="rpg" data-price="59.99">
+              <div class="game-card-image">
+                <img src="../assets\images\baldurs.avif"  width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Baldur's Gate 3</h3>
+                <div class="game-meta"><span class="genre">RPG</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span><span class="platform-badge">PS5</span></div>
+                <p class="game-price">$59.99</p>
+              </div>
+            </article>
+
+            <article class="game-card" data-id="grand-theft-auto-v" data-category="action" data-price="29.99">
+              <div class="game-card-image">
+                <img src="../assets\images\gtaV.png"  width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Grand Theft Auto V</h3>
+                <div class="game-meta"><span class="genre">Action</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span><span class="platform-badge">PS5</span></div>
+                <p class="game-price">$29.99</p>
+              </div>
+            </article>
+
+            <article class="game-card" data-id="red-dead-redemption-2" data-category="action" data-price="59.99">
+              <div class="game-card-image">
+                <img src="../assets\images\rdr2.avif" alt="Red Dead Redemption 2" width="400" height="500">
+                <button type="button" class="wishlist-btn" aria-label="Wishlist">♡</button>
+              </div>
+              <div class="game-card-body">
+                <h3>Red Dead Redemption 2</h3>
+                <div class="game-meta"><span class="genre">Action</span></div>
+                <div class="platform-badges"><span class="platform-badge">PC</span><span class="platform-badge">Xbox</span></div>
+                <p class="game-price">$59.99</p>
+              </div>
+            </article>
+
+            
+          </div>
+
+          <nav class="pagination" aria-label="Pagination">
+            <span class="active" aria-current="page">1</span>
+            <button type="button">2</button>
+            <button type="button">3</button>
+            <button type="button">4</button>
+            <button type="button">5</button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">game<span>StoB</span></a>
+          <p>Your premium destination for digital and physical games since 2015.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="purchase.html">Purchase</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="locations.html">Locations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 gameStoB. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>

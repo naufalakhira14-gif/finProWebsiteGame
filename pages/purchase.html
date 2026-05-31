@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Complete your gameStoB purchase securely.">
+  <title>gameStoB | Purchase</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="../index.html" class="logo">game<span>StoB</span></a>
+      <nav class="main-nav" id="main-nav" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="purchase.html">Purchase</a>
+        <a href="about.html">About Us</a>
+        <a href="locations.html">Locations</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="icon-btn" aria-label="Search">🔍</button>
+        <button type="button" class="icon-btn" aria-label="Account">👤</button>
+        <a href="purchase.html" class="icon-btn cart-badge" aria-label="Cart">🛒</a>
+        <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a> &gt; <span>Purchase</span>
+      </nav>
+
+      <div class="page-title">
+        <h1>Checkout</h1>
+        <p>Review your order and enter payment details to complete your purchase.</p>
+      </div>
+
+      <div class="purchase-layout">
+        <aside class="order-summary" aria-label="Order summary">
+          <h2>Order Summary</h2>
+          <div id="cart-items-list" aria-live="polite"></div>
+          <div class="order-totals">
+            <div class="row"><span>Subtotal</span><span id="cart-subtotal">$0.00</span></div>
+            <div class="row"><span>Tax (8%)</span><span id="cart-tax">$0.00</span></div>
+            <div class="row total"><span>Total</span><span id="cart-total">$0.00</span></div>
+          </div>
+          <div class="payment-logos">
+            <span>We Accept</span>
+            <div class="payment-icons">
+              <span class="pay-icon">VISA</span>
+              <span class="pay-icon">Mastercard</span>
+              <span class="pay-icon">PayPal</span>
+            </div>
+          </div>
+        </aside>
+
+        <section class="payment-card" aria-label="Payment details">
+          <h2>Payment Details</h2>
+          <form id="purchase-form" novalidate>
+            <div class="form-group">
+              <label for="fullName">Full Name</label>
+              <input type="text" id="fullName" name="fullName" autocomplete="name" placeholder="John Doe">
+              <span class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com">
+              <span class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="cardNumber">Card Number</label>
+              <input type="text" id="cardNumber" name="cardNumber" inputmode="numeric" maxlength="19" placeholder="1234 5678 9012 3456" autocomplete="cc-number">
+              <span class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="expiration">Expiration Date</label>
+                <input type="text" id="expiration" name="expiration" placeholder="MM/YY" autocomplete="cc-exp">
+                <span class="error-msg" aria-live="polite"></span>
+              </div>
+              <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" inputmode="numeric" maxlength="3" placeholder="123" autocomplete="cc-csc">
+                <span class="error-msg" aria-live="polite"></span>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="country">Country</label>
+              <select id="country" name="country" autocomplete="country-name">
+                <option value="">Select country</option>
+                <option value="ID">Indonesia</option>
+                <option value="US">United States</option>
+                <option value="GB">United Kingdom</option>
+                <option value="JP">Japan</option>
+                <option value="SG">Singapore</option>
+                <option value="AU">Australia</option>
+              </select>
+              <span class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms" name="terms">
+              <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+              <span class="error-msg" aria-live="polite"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Pay Now</button>
+          </form>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <div class="popup-overlay" id="success-popup" role="dialog" aria-modal="true" aria-labelledby="popup-title">
+    <div class="popup">
+      <div class="popup-icon" aria-hidden="true">✓</div>
+      <h3 id="popup-title">Payment Successful!</h3>
+      <p>Thank you for your purchase. Your order has been confirmed and a receipt will be sent to your email.</p>
+      <button type="button" class="btn btn-primary" id="popup-close">Continue Shopping</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="logo">game<span>StoB</span></a>
+          <p>Your premium destination for digital and physical games since 2015.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="purchase.html">Purchase</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="locations.html">Locations</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping</a></li>
+            <li><a href="#">Returns</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 gameStoB. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../js/script.js"></script>
+</body>
+</html>
