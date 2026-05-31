@@ -1,7 +1,3 @@
-/**
- * gameStoB — Main JavaScript
- * Mobile nav, search/category filters, purchase form validation (no regex)
- */
 
 (function () {
   'use strict';
@@ -9,13 +5,13 @@
   var CART_KEY = 'gameStoB_cart';
   var TAX_RATE = 0.08;
 
-  /* ---------- Cart (localStorage) ---------- */
+
   function getCart() {
     try {
       var raw = localStorage.getItem(CART_KEY);
       if (raw) return JSON.parse(raw);
     } catch (e) {
-      /* ignore */
+
     }
     return [];
   }
@@ -364,7 +360,7 @@
     });
   }
 
-  /* ---------- Products: search + category filter ---------- */
+  
   function initProductFilters() {
     var grid = document.getElementById('products-grid');
     if (!grid) return;
@@ -447,7 +443,7 @@
     }
   }
 
-  /* ---------- Form validation helpers (no regex) ---------- */
+  
   function isEmpty(str) {
     var i;
     var len = str.length;
@@ -610,7 +606,7 @@
     });
   }
 
-  /* ---------- Wishlist toggle (UX feedback) ---------- */
+  
   function initWishlist() {
     document.querySelectorAll('.wishlist-btn').forEach(function (btn) {
       btn.addEventListener('click', function (e) {
